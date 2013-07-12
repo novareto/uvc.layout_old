@@ -22,6 +22,7 @@ setup(name='uvc.layout',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
+          'dolmen.forms.composed',
       ],
       entry_points={
           'fanstatic.libraries': [

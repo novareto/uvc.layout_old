@@ -4,5 +4,5 @@
 
 
 from uvc.layout.interfaces import *
-from uvc.layout.slots.components import Menu, MenuItem, SubMenu
+from uvc.layout.slots.components import Menu, MenuItem
 from uvc.layout.forms.event import IAfterSaveEvent

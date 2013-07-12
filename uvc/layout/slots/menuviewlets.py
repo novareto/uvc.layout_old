@@ -20,12 +20,14 @@ class GlobalMenuViewlet(Viewlet):
     id = "globalmenuviewlet"
 
     def update(self):
-        globalmenu = getMultiAdapter(
+        self.menu = getMultiAdapter(
             (self.view.context, self.request, self.view),
             IViewletManager, 'globalmenu')
-        self.menus = globalmenu.getMenuItems()
-        self.renderableitems = globalmenu.getRenderableItems()
+        self.menu.update()
 
+    def render(self):
+        return self.menu.render()
+        
 
 class PersonalPreferencesViewlet(Viewlet):
     slot(IPageTop)
@@ -34,12 +36,16 @@ class PersonalPreferencesViewlet(Viewlet):
 
     template = get_template('personalpreferencestemplate.cpt')
     id = "personalpreferencesviewlet"
-
+    
     def update(self):
-        self.menus = getMultiAdapter(
+        self.menu = getMultiAdapter(
             (self.view.context, self.request, self.view),
-            IViewletManager, 'personalpreferences').getMenuItems()
+            IViewletManager, 'personalpreferences')
+        self.menu.update()
 
+    def render(self):
+        return self.menu.render()
+        
     @property
     def username(self):
         return "BLA"
@@ -54,9 +60,13 @@ class DocumentActionsMenuViewlet(Viewlet):
     id = "documentactionsmenuviewlet"
 
     def update(self):
-        self.menus = getMultiAdapter(
+        self.menu = getMultiAdapter(
             (self.view.context, self.request, self.view),
-            IViewletManager, 'documentactions').getMenuItems()
+            IViewletManager, 'documentactions')
+        self.menu.update()
+
+    def render(self):
+        return self.menu.render()
 
 
 class FooterViewlet(Viewlet):
@@ -68,10 +78,13 @@ class FooterViewlet(Viewlet):
     id = "footerviewlet"
 
     def update(self):
-        self.menus = getMultiAdapter(
+        self.menu = getMultiAdapter(
             (self.view.context, self.request, self.view),
-            IViewletManager, 'footermenu').getMenuItems()
-        print self.menus
+            IViewletManager, 'footermenu')
+        self.menu.update()
+
+    def render(self):
+        return self.menu.render()
 
 
 class ExtraViewsViewlet(Viewlet):
@@ -83,6 +96,10 @@ class ExtraViewsViewlet(Viewlet):
     id = "extraviewsviewlet"
 
     def update(self):
-        self.menus = getMultiAdapter(
+        self.menu = getMultiAdapter(
             (self.view.context, self.request, self.view),
-            IViewletManager, 'extraviews').getMenuItems()
+            IViewletManager, 'extraviews')
+        self.menu.update()
+
+    def render(self):
+        return self.menu.render()

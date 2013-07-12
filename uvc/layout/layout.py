@@ -9,18 +9,10 @@ from grokcore.component import context
 from uvc.layout.utils import get_template
 from zope.interface import Interface
 
-from nva.fernlehrgang.resources import css
-
 
 class UVCLayout(Layout):
     context(Interface)
 
     responseFactory = Response
     template = get_template('layout.cpt')
-
-    title = u"Fernlehrgang"
     base = u"/"
-
-    def __call__(self, content, **extra):
-        css.need()
-        return Layout.__call__(self, content, **extra)
